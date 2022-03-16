@@ -78,3 +78,25 @@
     </div>
 </div>
 
+<ng-template #contentAddRecipe let-c="close" let-d="dismiss" class="modal fade" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Aggiungi una ricetta 🍰</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal();" style="outline: none;">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+          <mat-label>Inserisci un link da salvare nella lista!</mat-label>
+          <input matInput placeholder="Ex. Pizza">
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="modal-footer" style="margin-top: -1.34375em;">
+      <button mat-button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">Chiudi</button>
+      <button mat-button type="button" class="btn btn-primary" style="border: 1px solid #0275d8;">Salva</button>
+    </div>
+  </div>
+</ng-template>
