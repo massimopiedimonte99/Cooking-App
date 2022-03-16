@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookingDto } from '../dtos/cooking-dto';
 import { EventNotifierService } from '../services/even-notifier.service';
+import { FormGroup } from '@angular/forms';
+import { CookingService } from '../services/cooking.service';
 
 @Component({
   selector: 'app-table-cooking',
@@ -14,17 +16,36 @@ export class TableCookingComponent implements OnInit {
   @ViewChild('contentRemoveRecipe', { static: true }) public modalKtInfoRemove: any;
   
   subAdd: any;
-  detail: CookingDto;
+
+  recipe: CookingDto;
+  detail: any[];
 
   constructor(  private eventNotify: EventNotifierService
-              , private modalService: NgbModal) {
+              , private modalService: NgbModal
+              , private cookingService: CookingService) {
     this.subAdd = this.eventNotify.getAddElement().subscribe(data => {
       if (data){
           this.modalService.dismissAll();
-          this.detail = new CookingDto();
+          this.recipe = new CookingDto();
+          this.detail = [];
           this.modalService.open(this.modalKtInfoDetail, {size:'lg', backdrop: 'static', keyboard: false});
       }
     })
+  }
+
+  
+  ngOnInit() {
+    this.recipe = new CookingDto();
+    this.detail = [];
+    this.caricaTabella();
+  }
+  
+  caricaTabella() {
+    this.cookingService.getAllRecipes().then(res => {
+      res.docs.forEach(e => {
+        this.detail.push(e.data());
+      })
+    });
   }
 
   closeModal() {
@@ -35,7 +56,12 @@ export class TableCookingComponent implements OnInit {
     this.modalService.open(this.modalKtInfoRemove, {size:'lg', backdrop: 'static', keyboard: false});
   }
 
-  ngOnInit() {
+  saveRecipe() {
+    this.cookingService.addRecipe(this.recipe).then(res => {
+      this.recipe = new CookingDto();
+      this.modalService.dismissAll();  
+      this.caricaTabella();
+    }).catch(err => console.log(err));
   }
 
 }

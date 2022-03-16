@@ -1,27 +1,11 @@
 <!-- https://getbootstrap.com/docs/5.0/examples/sidebars/# -->
 
-<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" *ngIf="detail && detail.length != 0">
     <div class="list-group list-group-flush border-bottom scrollarea">
-      <div class="area">
+      <div class="area" *ngFor="let item of detail">
         <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
           <div class="d-flex w-100 align-items-center justify-content-between">
-            <strong>List group item heading</strong>
-          </div>
-        </a>
-        <button mat-button class="btn" style="border: 1px solid #e3e3e3;" (click)="openModalRemove()"><em class="fa fa-trash"></em></button>
-      </div>
-      <div class="area">
-        <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
-          <div class="d-flex w-100 align-items-center justify-content-between">
-            <strong>List group item heading</strong>
-          </div>
-        </a>
-        <button mat-button class="btn" style="border: 1px solid #e3e3e3;" (click)="openModalRemove()"><em class="fa fa-trash"></em></button>
-      </div>
-      <div class="area">
-        <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
-          <div class="d-flex w-100 align-items-center justify-content-between">
-            <strong>List group item heading</strong>
+            <strong>{{ item.link }}</strong>
           </div>
         </a>
         <button mat-button class="btn" style="border: 1px solid #e3e3e3;" (click)="openModalRemove()"><em class="fa fa-trash"></em></button>
@@ -41,13 +25,13 @@
       <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
           <mat-label>Inserisci un link da salvare nella lista!</mat-label>
-          <input matInput placeholder="https://www.youtube.com/vXs...">
+          <input matInput placeholder="https://www.youtube.com/vXs..." [(ngModel)]="recipe.link" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
       </form>
     </div>
     <div class="modal-footer" style="margin-top: -1.34375em;">
       <button mat-button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">Chiudi</button>
-      <button mat-button type="button" class="btn btn-primary" style="border: 1px solid #0275d8;">Salva</button>
+      <button mat-button type="button" class="btn btn-primary" style="border: 1px solid #0275d8;" (click)="saveRecipe();">Salva</button>
     </div>
   </div>
 </ng-template>
