@@ -11,6 +11,7 @@ import { EventNotifierService } from '../services/even-notifier.service';
 export class TableCookingComponent implements OnInit {
   
   @ViewChild('contentAddRecipe', { static: true }) public modalKtInfoDetail: any;
+  @ViewChild('contentRemoveRecipe', { static: true }) public modalKtInfoRemove: any;
   
   subAdd: any;
   detail: CookingDto;
@@ -28,6 +29,10 @@ export class TableCookingComponent implements OnInit {
 
   closeModal() {
     this.modalService.dismissAll();
+  }
+
+  openModalRemove() {
+    this.modalService.open(this.modalKtInfoRemove, {size:'lg', backdrop: 'static', keyboard: false});
   }
 
   ngOnInit() {
