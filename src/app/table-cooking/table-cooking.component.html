@@ -3,9 +3,9 @@
 <div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
     <div class="list-group list-group-flush border-bottom scrollarea">
       <div class="area" *ngFor="let item of detail">
-        <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+        <a href="{{ item.link }}" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true" target="_blank">
           <div class="d-flex w-100 align-items-center justify-content-between">
-            <strong>{{ item.link }}</strong>
+            <strong>{{ item.title }}</strong>
           </div>
         </a>
         <button mat-button class="btn" style="border: 1px solid #e3e3e3;" (click)="openModalRemove(item)"><em class="fa fa-trash"></em></button>
@@ -24,8 +24,12 @@
     <div class="modal-body">
       <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+          <mat-label>Inserisci ii titolo della ricetta!</mat-label>
+          <input matInput placeholder="Eg. Pennette al Ragù" [(ngModel)]="recipe.title" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
           <mat-label>Inserisci un link da salvare nella lista!</mat-label>
-          <input matInput placeholder="https://www.youtube.com/vXs..." [(ngModel)]="recipe.link" [ngModelOptions]="{standalone: true}">
+          <input matInput placeholder="Eg. https://www.youtube.com/vXs..." [(ngModel)]="recipe.link" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
       </form>
     </div>
