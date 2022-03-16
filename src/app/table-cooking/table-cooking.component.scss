@@ -2,3 +2,21 @@
     width: 100px;
     border-radius: 100%;
 }
+
+.fa-trash {
+    font-size: 1.3em;
+    padding: 10px;
+    border-radius: 100%;
+}
+
+.area  {
+    position: relative;
+    border-top: 1px solid #e3e3e3;
+}
+
+.area button {
+    position: absolute;
+    right: 30px;
+    top: 8px;
+    z-index: 10;
+}
