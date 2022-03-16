@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
 import { TableCookingComponent } from './table-cooking/table-cooking.component';
+import { EventNotifierService } from './services/even-notifier.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { TableCookingComponent } from './table-cooking/table-cooking.component';
     MatButtonModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [EventNotifierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

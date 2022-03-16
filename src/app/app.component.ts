@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EventNotifierService } from './services/even-notifier.service';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +8,17 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'CookingApp';
+  constructor(public eventNotify: EventNotifierService) {
+  }
+
+  addRecipe: boolean;
+
+  ngOnInit() {
+    this.addRecipe = false;
+  }
 
   openModal() { 
-    console.log("LOL");
+    this.addRecipe = true;
+    this.eventNotify.sendAddElement(this.addRecipe);
   }
 }
