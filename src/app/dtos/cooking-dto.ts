@@ -1,11 +1,11 @@
 export class CookingDto {
 
-    link: string;
     title: string;
+    link: string;
 
     constructor() {
-        this.link = "";
         this.title = ""; 
+        this.link = "";
     }
 
 }

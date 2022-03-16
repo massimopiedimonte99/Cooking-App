@@ -17,4 +17,12 @@ export class CookingService {
     return this.service.collection('Recipe').get().toPromise();
   }
 
+  deleteRecipe(link: string) {
+    return this.service.collection('Recipe', ref => ref.where('link', '==', link)).get().toPromise().then(snapshot => {
+      snapshot.docs.forEach(doc => {
+        doc.ref.delete();
+      });
+    });
+  }
+
 }

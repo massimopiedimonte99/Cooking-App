@@ -19,6 +19,7 @@ export class TableCookingComponent implements OnInit {
 
   recipe: CookingDto;
   detail: any[];
+  detailDaEliminare: any;
 
   constructor(  private eventNotify: EventNotifierService
               , private modalService: NgbModal
@@ -41,19 +42,30 @@ export class TableCookingComponent implements OnInit {
   }
   
   caricaTabella() {
+    this.detail = [];
     this.cookingService.getAllRecipes().then(res => {
       res.docs.forEach(e => {
         this.detail.push(e.data());
-      })
+      });
     });
   }
 
   closeModal() {
     this.modalService.dismissAll();
+    this.caricaTabella();
   }
 
-  openModalRemove() {
+  openModalRemove(item) {
+    this.detailDaEliminare = item;
     this.modalService.open(this.modalKtInfoRemove, {size:'lg', backdrop: 'static', keyboard: false});
+  }
+
+  deleteItem() {
+    this.cookingService.deleteRecipe(this.detailDaEliminare.link).then(res => {
+      this.detailDaEliminare = {};
+      this.modalService.dismissAll();
+      this.caricaTabella();
+    });
   }
 
   saveRecipe() {

@@ -1,6 +1,6 @@
 <!-- https://getbootstrap.com/docs/5.0/examples/sidebars/# -->
 
-<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" *ngIf="detail && detail.length != 0">
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white">
     <div class="list-group list-group-flush border-bottom scrollarea">
       <div class="area" *ngFor="let item of detail">
         <a href="#" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
@@ -8,7 +8,7 @@
             <strong>{{ item.link }}</strong>
           </div>
         </a>
-        <button mat-button class="btn" style="border: 1px solid #e3e3e3;" (click)="openModalRemove()"><em class="fa fa-trash"></em></button>
+        <button mat-button class="btn" style="border: 1px solid #e3e3e3;" (click)="openModalRemove(item)"><em class="fa fa-trash"></em></button>
       </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
     </div>
     <div class="modal-footer" style="margin-top: -1.34375em;">
       <button mat-button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">Chiudi</button>
-      <button mat-button type="button" class="btn btn-primary" style="border: 1px solid #0275d8;" (click)="saveRecipe();">Salva</button>
+      <button mat-button type="button" class="btn btn-primary" style="border: 1px solid #0275d8;" (click)="saveRecipe();" [disabled]="recipe.link === '' || recipe.title === ''">Salva</button>
     </div>
   </div>
 </ng-template>
@@ -48,7 +48,7 @@
     </div>
     <div class="modal-footer" style="margin-top: -1.34375em;">
       <button mat-button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">No, ci ho ripensato</button>
-      <button mat-button type="button" class="btn btn-primary" style="border: 1px solid #0275d8;">Sì, lo voglio</button>
+      <button mat-button type="button" class="btn btn-primary" style="border: 1px solid #0275d8;" (click)="deleteItem();">Sì, lo voglio</button>
     </div>
   </div>
 </ng-template>
