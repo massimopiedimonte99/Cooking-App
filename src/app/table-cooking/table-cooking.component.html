@@ -24,7 +24,7 @@
     <div class="modal-body">
       <form class="example-form">
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
-          <mat-label>Inserisci ii titolo della ricetta!</mat-label>
+          <mat-label>Inserisci il titolo della ricetta!</mat-label>
           <input matInput placeholder="Eg. Pennette al Ragù" [(ngModel)]="recipe.title" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
@@ -49,6 +49,8 @@
       </button>
     </div>
     <div class="modal-body">
+      <p>Titolo: <em>{{ detailDaEliminare.title }}</em></p>
+      <p>Link: <em>{{ detailDaEliminare.link }}</em></p>
     </div>
     <div class="modal-footer" style="margin-top: -1.34375em;">
       <button mat-button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal();">No, ci ho ripensato</button>
