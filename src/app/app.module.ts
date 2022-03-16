@@ -10,6 +10,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableCookingComponent } from './table-cooking/table-cooking.component';
 import { EventNotifierService } from './services/even-notifier.service';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +25,10 @@ import { EventNotifierService } from './services/even-notifier.service';
     MatButtonModule,
     MatInputModule, 
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule
   ],
   providers: [EventNotifierService],
   bootstrap: [AppComponent]
